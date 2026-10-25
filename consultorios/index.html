@@ -285,7 +285,7 @@
 
 <script>
   // TODO: número de WhatsApp de AXIOMA IA (52 + 10 dígitos, sin espacios).
-  const WHATSAPP_AXIOMA = '';
+  const WHATSAPP_AXIOMA = '524445412348';
   const MENSAJE = 'Hola, vi la demostración del asistente para consultorios y me gustaría verlo con mis horarios.';
   document.querySelectorAll('[data-whatsapp]').forEach(a => {
     if (WHATSAPP_AXIOMA) a.href = `https://wa.me/${WHATSAPP_AXIOMA}?text=${encodeURIComponent(MENSAJE)}`;
