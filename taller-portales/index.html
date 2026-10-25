@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mecánica Automotriz Portales · Taller mecánico en San Luis Potosí</title>
+<meta name="description" content="Taller mecánico en San Luis Potosí con 4.9 estrellas y más de 100 reseñas en Google. Afinación, frenos, suspensión y diagnóstico. Cotice por WhatsApp.">
+<!-- Propuesta de diseño: no indexar hasta que el negocio la apruebe -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Mecánica Automotriz Portales · 4.9 estrellas en Google">
+<meta property="og:description" content="Afinación, frenos, suspensión y diagnóstico en San Luis Potosí. Le explicamos qué tiene su carro antes de tocarlo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Libre+Franklin:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --manila: #EFE5CF;
+    --manila-2: #E6D9BC;
+    --papel: #FBF7EE;
+    --tinta: #1D1A16;
+    --grafito: #4A443B;
+    --sepia: #7A6F5D;
+    --linea: rgba(29,26,22,.16);
+    --sello: #C8321F;
+    --sello-2: #A12415;
+    --carbon: #2B3A55;
+    --wa: #1F9D55;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--manila); color: var(--tinta);
+    font: 400 17px/1.6 'Libre Franklin', system-ui, sans-serif; overflow-x: hidden;
+    background-image:
+      radial-gradient(rgba(122,111,93,.10) 1px, transparent 1.2px),
+      radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.2px);
+    background-size: 7px 7px, 11px 11px; background-position: 0 0, 3px 5px;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .env { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  .aviso-demo { background: var(--tinta); color: #CFC6B4; font-size: 13px; text-align: center; padding: 8px 16px; }
+  .aviso-demo b { color: #fff; font-weight: 600; }
+
+  header { border-bottom: 2px solid var(--tinta); }
+  header .env { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo svg { width: 40px; height: 40px; }
+  .logo b { font: 800 26px/.9 'Saira Condensed', sans-serif; text-transform: uppercase; letter-spacing: .01em; display: block; }
+  .logo small { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .14em; color: var(--sepia); text-transform: uppercase; }
+  nav { display: flex; gap: 28px; font: 500 13px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+  nav a { text-decoration: none; }
+  nav a:hover { color: var(--sello); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 700 19px/1 'Saira Condensed', sans-serif; text-transform: uppercase; letter-spacing: .04em; padding: 15px 22px; border: 2px solid var(--tinta); transition: transform .15s, box-shadow .15s; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-wa { background: var(--wa); color: #fff; border-color: var(--tinta); box-shadow: 4px 4px 0 var(--tinta); }
+  .btn-tinta { background: var(--papel); box-shadow: 4px 4px 0 var(--tinta); }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tinta); }
+  .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--tinta); }
+  header .btn { font-size: 16px; padding: 10px 16px; box-shadow: 3px 3px 0 var(--tinta); }
+
+  /* HERO */
+  .hero { padding: 64px 0 90px; }
+  .hero .env { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .folio { font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--sepia); display: flex; gap: 14px; align-items: center; }
+  .folio::after { content: ''; flex: 1; height: 1px; background: var(--linea); max-width: 120px; }
+  h1 { font: 800 clamp(56px, 8.4vw, 108px)/.86 'Saira Condensed', sans-serif; text-transform: uppercase; letter-spacing: -.01em; margin: 22px 0 24px; }
+  h1 em { font-style: normal; color: var(--sello); }
+  .bajada { font-size: 20px; color: var(--grafito); max-width: 36ch; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+
+  /* Orden de servicio */
+  .orden { position: relative; background: var(--papel); border: 2px solid var(--tinta); padding: 26px 26px 22px; box-shadow: 10px 10px 0 var(--manila-2), 10px 10px 0 2px var(--tinta); transform: rotate(1.2deg); }
+  .orden::before { content: ''; position: absolute; top: -2px; left: 22px; right: 22px; height: 14px; background: radial-gradient(circle at 7px 0, var(--manila) 5px, transparent 5.5px) 0 0 / 22px 14px repeat-x; }
+  .orden-cab { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--tinta); padding-bottom: 10px; margin-bottom: 14px; }
+  .orden-cab b { font: 800 26px/1 'Saira Condensed', sans-serif; text-transform: uppercase; }
+  .orden-cab span { font: 500 13px 'IBM Plex Mono', monospace; color: var(--sello); }
+  .campos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; font: 400 13px 'IBM Plex Mono', monospace; margin-bottom: 14px; }
+  .campos div { border-bottom: 1px dashed var(--linea); padding-bottom: 4px; }
+  .campos small { display: block; color: var(--sepia); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; }
+  .campos .escrito { font-family: 'IBM Plex Mono', monospace; color: var(--carbon); font-weight: 500; }
+  .checks { list-style: none; font: 400 14.5px 'IBM Plex Mono', monospace; }
+  .checks li { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--linea); }
+  .caja { width: 20px; height: 20px; border: 1.6px solid var(--tinta); position: relative; }
+  .caja svg { position: absolute; inset: -6px -4px -2px -2px; width: 28px; height: 28px; overflow: visible; }
+  .caja path { fill: none; stroke: var(--carbon); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 30; stroke-dashoffset: 30; }
+  .checks li.hecho .caja path { animation: palomear .45s ease-out forwards; }
+  @keyframes palomear { to { stroke-dashoffset: 0; } }
+  .checks .estado { font-size: 11px; color: var(--sepia); text-transform: uppercase; letter-spacing: .08em; }
+  .firma { display: flex; justify-content: space-between; align-items: end; margin-top: 16px; font: 400 11px 'IBM Plex Mono', monospace; color: var(--sepia); text-transform: uppercase; letter-spacing: .1em; }
+  .firma div { border-top: 1px solid var(--tinta); padding-top: 4px; width: 44%; }
+  .sello { position: absolute; right: -34px; bottom: -58px; width: 150px; height: 150px; border: 4px double var(--sello); border-radius: 50%; color: var(--sello); display: grid; place-content: center; text-align: center; transform: rotate(-16deg) scale(2.2); opacity: 0; mix-blend-mode: multiply; }
+  .sello b { font: 800 50px/.9 'Saira Condensed', sans-serif; }
+  .sello span { font: 700 13px/1.1 'Saira Condensed', sans-serif; text-transform: uppercase; letter-spacing: .12em; }
+  .sello.puesto { animation: sellar .35s cubic-bezier(.3,1.6,.5,1) forwards; }
+  @keyframes sellar { to { transform: rotate(-16deg) scale(1); opacity: .9; } }
+
+  /* CINTA */
+  .cinta { background: var(--tinta); color: var(--manila); overflow: hidden; border-top: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); }
+  .cinta-track { display: flex; gap: 46px; width: max-content; padding: 16px 0; animation: correr 34s linear infinite; font: 700 22px/1 'Saira Condensed', sans-serif; text-transform: uppercase; letter-spacing: .06em; }
+  .cinta-track span::after { content: '✱'; color: var(--sello); margin-left: 46px; }
+  @keyframes correr { to { transform: translateX(-50%); } }
+
+  section { padding: 96px 0; }
+  .titulo { margin-bottom: 46px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: end; }
+  .titulo .n { font: 800 110px/.75 'Saira Condensed', sans-serif; color: transparent; -webkit-text-stroke: 2px var(--tinta); }
+  .titulo small { display: block; font: 500 12px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .16em; color: var(--sello); margin-bottom: 8px; }
+  h2 { font: 800 clamp(40px, 5.6vw, 66px)/.9 'Saira Condensed', sans-serif; text-transform: uppercase; }
+
+  /* TABULADOR DE SERVICIOS */
+  .tabulador { background: var(--papel); border: 2px solid var(--tinta); }
+  .tab-cab, .tab-fila { display: grid; grid-template-columns: 70px 1fr 200px; align-items: center; }
+  .tab-cab { background: var(--tinta); color: var(--manila); font: 500 12px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .12em; padding: 10px 22px; }
+  .tab-fila { padding: 20px 22px; border-top: 1px solid var(--linea); transition: background .2s; }
+  .tab-fila:hover { background: #fff; }
+  .tab-fila .clave { font: 500 13px 'IBM Plex Mono', monospace; color: var(--sello); }
+  .tab-fila h3 { font: 700 25px/1 'Saira Condensed', sans-serif; text-transform: uppercase; }
+  .tab-fila p { color: var(--grafito); font-size: 15px; margin-top: 4px; }
+  .tab-fila a { justify-self: end; font: 500 13px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .08em; text-decoration: none; border-bottom: 1.5px solid var(--tinta); padding-bottom: 2px; }
+  .tab-fila a:hover { color: var(--sello); border-color: var(--sello); }
+
+  /* FOTOS + PASOS */
+  .taller { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: start; }
+  .polaroids { position: relative; min-height: 690px; }
+  .polaroid { position: absolute; background: #fff; padding: 12px 12px 44px; border: 1px solid var(--linea); box-shadow: 0 18px 40px -18px rgba(29,26,22,.5); width: 66%; }
+  .polaroid img { aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+  .polaroid figcaption { position: absolute; left: 14px; bottom: 12px; font: 400 14px 'IBM Plex Mono', monospace; color: var(--grafito); }
+  .polaroid:nth-child(1) { left: 0; top: 0; transform: rotate(-3deg); }
+  .polaroid:nth-child(2) { right: 0; top: 345px; transform: rotate(2.5deg); }
+  .cinta-adh { position: absolute; top: -12px; left: 50%; width: 90px; height: 26px; background: rgba(239,229,207,.85); transform: translateX(-50%) rotate(-4deg); border: 1px solid rgba(29,26,22,.08); }
+  .pasos { list-style: none; }
+  .pasos li { display: grid; grid-template-columns: 54px 1fr; gap: 16px; padding: 22px 0; border-top: 2px solid var(--tinta); }
+  .pasos li:last-child { border-bottom: 2px solid var(--tinta); }
+  .pasos .k { font: 800 44px/.9 'Saira Condensed', sans-serif; color: var(--sello); }
+  .pasos h3 { font: 700 24px/1 'Saira Condensed', sans-serif; text-transform: uppercase; margin-bottom: 6px; }
+  .pasos p { color: var(--grafito); font-size: 15px; }
+
+  /* RESEÑA */
+  .resena { background: var(--carbon); color: var(--papel); }
+  .resena .env { display: grid; grid-template-columns: auto 1fr; gap: 64px; align-items: center; }
+  .grande { font: 800 clamp(120px, 17vw, 220px)/.8 'Saira Condensed', sans-serif; color: var(--manila); }
+  .grande small { display: block; font: 500 14px 'IBM Plex Mono', monospace; letter-spacing: .1em; color: #B9C2D3; text-transform: uppercase; margin-top: 18px; }
+  .grande .estr { font-size: 30px; color: #F2B544; letter-spacing: 3px; display: block; margin-top: 10px; }
+  .resena small.et { font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: #F2B544; }
+  .resena blockquote { font: 700 clamp(36px, 5vw, 64px)/.98 'Saira Condensed', sans-serif; text-transform: uppercase; margin: 14px 0 18px; }
+  .resena p { color: #B9C2D3; max-width: 52ch; }
+
+  /* CONTACTO */
+  .contacto .env { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+  .contacto p.intro { color: var(--grafito); max-width: 40ch; margin: 18px 0 26px; }
+  .renglon { display: flex; gap: 14px; padding: 14px 0; border-top: 1px dashed var(--sepia); font-size: 16px; }
+  .renglon:last-child { border-bottom: 1px dashed var(--sepia); }
+  .renglon span:first-child { font: 500 12px/1.9 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--sepia); width: 100px; flex: none; }
+  form { background: var(--papel); border: 2px solid var(--tinta); padding: 28px; box-shadow: 8px 8px 0 var(--tinta); display: grid; gap: 16px; }
+  form h3 { font: 800 28px/1 'Saira Condensed', sans-serif; text-transform: uppercase; border-bottom: 2px solid var(--tinta); padding-bottom: 12px; display: flex; justify-content: space-between; }
+  form h3 span { font: 500 13px 'IBM Plex Mono', monospace; color: var(--sello); }
+  label { display: grid; gap: 6px; font: 500 12px 'IBM Plex Mono', monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--sepia); }
+  input, select, textarea { font: 400 17px 'IBM Plex Mono', monospace; color: var(--carbon); border: 0; border-bottom: 1.5px solid var(--tinta); background: transparent; padding: 8px 2px; border-radius: 0; }
+  select { background: var(--papel); }
+  input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--sello); background: #fff; }
+  .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  form .btn { justify-content: center; cursor: pointer; }
+
+  footer { border-top: 2px solid var(--tinta); padding: 28px 0; font: 400 13px 'IBM Plex Mono', monospace; color: var(--grafito); }
+  footer .env { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+  .flota { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 58px; height: 58px; background: var(--wa); border: 2px solid var(--tinta); box-shadow: 4px 4px 0 var(--tinta); display: grid; place-items: center; border-radius: 50%; }
+  .flota svg { width: 28px; height: 28px; color: #fff; }
+
+  .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s, transform .7s; }
+  .revelar.visto { opacity: 1; transform: none; }
+  .entrada > * { opacity: 0; animation: subir .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .entrada > *:nth-child(2) { animation-delay: .1s; } .entrada > *:nth-child(3) { animation-delay: .2s; } .entrada > *:nth-child(4) { animation-delay: .3s; }
+  @keyframes subir { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .revelar, .entrada > * { opacity: 1; transform: none; }
+    .sello { opacity: .9; transform: rotate(-16deg); }
+    .caja path { stroke-dashoffset: 0; }
+  }
+
+  @media (max-width: 920px) {
+    nav { display: none; }
+    .hero { padding: 40px 0 70px; }
+    .hero .env, .taller, .resena .env, .contacto .env { grid-template-columns: 1fr; }
+    .orden { transform: none; margin-right: 10px; }
+    .sello { right: -8px; bottom: -64px; width: 120px; height: 120px; }
+    .hero .env { gap: 70px; }
+    .sello b { font-size: 40px; }
+    .tab-cab, .tab-fila { grid-template-columns: 50px 1fr; }
+    .tab-cab span:last-child { display: none; }
+    .tab-fila a { grid-column: 2; justify-self: start; margin-top: 10px; }
+    .polaroids { min-height: 0; display: grid; gap: 22px; }
+    .polaroid { position: relative; width: 100%; top: auto !important; left: auto !important; right: auto !important; }
+    .resena .env { gap: 30px; }
+    section { padding: 70px 0; }
+    .titulo .n { font-size: 80px; }
+  }
+  @media (max-width: 560px) {
+    header .btn span { display: none; }
+    .campos { grid-template-columns: 1fr; }
+    .fila { grid-template-columns: 1fr; }
+    .titulo { grid-template-columns: 1fr; gap: 6px; }
+    .titulo .n { font-size: 64px; }
+    .bajada { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="aviso-demo"><b>Propuesta de diseño</b> preparada por AXIOMA IA para Mecánica Automotriz Portales · no es el sitio oficial</div>
+
+<header>
+  <div class="env">
+    <a class="logo" href="#inicio" aria-label="Mecánica Automotriz Portales">
+      <!-- TODO: logo real del negocio; este es una propuesta -->
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" fill="#1D1A16"/><path d="M11 30V12h10.5a6 6 0 0 1 0 12H11" fill="none" stroke="#EFE5CF" stroke-width="3.4" stroke-linejoin="round"/><circle cx="29" cy="30" r="3" fill="#C8321F"/></svg>
+      <span><b>Portales</b><small>Mecánica automotriz</small></span>
+    </a>
+    <nav><a href="#servicios">Servicios</a><a href="#taller">El taller</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></nav>
+    <a class="btn btn-wa js-wa" href="#contacto"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.2-4.6c-.4-.5-1-1.5-1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg><span>Cotizar</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="env">
+      <div class="entrada">
+        <div class="folio">Taller mecánico · San Luis Potosí</div>
+        <h1>Su carro en un taller con <em>4.9</em> estrellas.</h1>
+        <p class="bajada">Afinación, frenos, suspensión y diagnóstico. Le explicamos qué tiene su carro y cuánto cuesta antes de tocar una sola pieza.</p>
+        <div class="acciones">
+          <a class="btn btn-wa js-wa" href="#contacto"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>Cotizar por WhatsApp</a>
+          <a class="btn btn-tinta" href="tel:+524442440425">444 244 0425</a>
+        </div>
+      </div>
+
+      <div class="orden entrada" aria-hidden="true">
+        <div class="orden-cab"><b>Orden de servicio</b><span>Nº 0117</span></div>
+        <div class="campos">
+          <div><small>Cliente</small><span class="escrito">Usted</span></div>
+          <div><small>Vehículo</small><span class="escrito" id="vehiculo">Sedán 2017</span></div>
+          <div><small>Recibido</small><span class="escrito">Hoy, 9:10</span></div>
+          <div><small>Entrega</small><span class="escrito">Hoy, 18:00</span></div>
+        </div>
+        <ul class="checks" id="checks">
+          <li><span class="caja"><svg viewBox="0 0 28 28"><path d="M5 15l6 6L25 4"/></svg></span>Diagnóstico por computadora<span class="estado">ok</span></li>
+          <li><span class="caja"><svg viewBox="0 0 28 28"><path d="M5 15l6 6L25 4"/></svg></span>Balatas y discos<span class="estado">ok</span></li>
+          <li><span class="caja"><svg viewBox="0 0 28 28"><path d="M5 15l6 6L25 4"/></svg></span>Aceite y filtros<span class="estado">ok</span></li>
+          <li><span class="caja"><svg viewBox="0 0 28 28"><path d="M5 15l6 6L25 4"/></svg></span>Suspensión<span class="estado">ok</span></li>
+          <li><span class="caja"><svg viewBox="0 0 28 28"><path d="M5 15l6 6L25 4"/></svg></span>Prueba de manejo<span class="estado">ok</span></li>
+        </ul>
+        <div class="firma"><div>Revisó: mecánico</div><div>Autorizó: cliente</div></div>
+        <div class="sello" id="sello"><b>4.9★</b><span>117 reseñas<br>en Google</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta-track">
+      <span>Afinación</span><span>Frenos</span><span>Suspensión</span><span>Diagnóstico por computadora</span><span>Cambio de aceite</span><span>Clutch</span><span>Sistema eléctrico</span>
+      <span>Afinación</span><span>Frenos</span><span>Suspensión</span><span>Diagnóstico por computadora</span><span>Cambio de aceite</span><span>Clutch</span><span>Sistema eléctrico</span>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <div class="env">
+      <div class="titulo revelar"><span class="n">01</span><div><small>Tabulador</small><h2>Lo que hacemos<br>todos los días</h2></div></div>
+      <!-- TODO: confirmar con el taller la lista real de servicios -->
+      <div class="tabulador revelar">
+        <div class="tab-cab"><span>Clave</span><span>Servicio</span><span style="text-align:right">Precio</span></div>
+        <div class="tab-fila"><span class="clave">A-01</span><div><h3>Afinación mayor y menor</h3><p>Bujías, filtros, limpieza de inyectores y cuerpo de aceleración.</p></div><a class="js-cotiza" data-servicio="afinación" href="#contacto">Cotizar →</a></div>
+        <div class="tab-fila"><span class="clave">F-02</span><div><h3>Frenos</h3><p>Balatas, rectificado o cambio de discos y tambores, líquido de frenos.</p></div><a class="js-cotiza" data-servicio="frenos" href="#contacto">Cotizar →</a></div>
+        <div class="tab-fila"><span class="clave">S-03</span><div><h3>Suspensión y dirección</h3><p>Amortiguadores, rótulas, terminales, bujes y alineación.</p></div><a class="js-cotiza" data-servicio="suspensión" href="#contacto">Cotizar →</a></div>
+        <div class="tab-fila"><span class="clave">D-04</span><div><h3>Diagnóstico por computadora</h3><p>¿Se prendió el check engine? Leemos los códigos y le explicamos qué significan.</p></div><a class="js-cotiza" data-servicio="diagnóstico" href="#contacto">Cotizar →</a></div>
+        <div class="tab-fila"><span class="clave">M-05</span><div><h3>Cambio de aceite y servicio</h3><p>Aceite y filtro según su modelo, revisión de niveles y puntos de seguridad.</p></div><a class="js-cotiza" data-servicio="cambio de aceite" href="#contacto">Cotizar →</a></div>
+        <div class="tab-fila"><span class="clave">C-06</span><div><h3>Clutch y transmisión</h3><p>Kit de clutch, collarín, volante y fugas de transmisión.</p></div><a class="js-cotiza" data-servicio="clutch" href="#contacto">Cotizar →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="taller" style="padding-top:0">
+    <div class="env taller">
+      <div class="polaroids revelar">
+        <figure class="polaroid"><span class="cinta-adh"></span><img src="img/orden.jpg" alt="Mecánico revisando la orden de servicio junto al auto" loading="lazy"><figcaption>Revisión con el cliente</figcaption></figure>
+        <figure class="polaroid"><span class="cinta-adh"></span><img src="img/taller.jpg" alt="Mecánico trabajando en el taller" loading="lazy"><figcaption>Manos a la obra</figcaption></figure>
+      </div>
+      <div>
+        <div class="titulo revelar"><span class="n">02</span><div><small>Así trabajamos</small><h2>Sin letras<br>chiquitas</h2></div></div>
+        <ol class="pasos">
+          <li class="revelar"><span class="k">1</span><div><h3>Recibimos su carro</h3><p>Anotamos lo que usted nota: ruidos, testigos, fallas. Todo queda en su orden de servicio.</p></div></li>
+          <li class="revelar"><span class="k">2</span><div><h3>Diagnóstico y presupuesto</h3><p>Le mandamos por WhatsApp qué encontramos, con fotos, y cuánto cuesta.</p></div></li>
+          <li class="revelar"><span class="k">3</span><div><h3>Usted autoriza</h3><p>No se cambia ninguna pieza sin su visto bueno.</p></div></li>
+          <li class="revelar"><span class="k">4</span><div><h3>Prueba y entrega</h3><p>Probamos el carro antes de entregarlo y le enseñamos las piezas cambiadas.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="resena" id="resenas">
+    <div class="env">
+      <div class="grande revelar">4.9<span class="estr">★★★★★</span><small>117 reseñas en Google</small></div>
+      <div class="revelar">
+        <small class="et">Lo que dicen los clientes</small>
+        <blockquote>“Excelente taller, muy buena atención.”</blockquote>
+        <p>Reseña real de un cliente en Google Maps. Más de cien personas han calificado el taller, y la mayoría le da cinco estrellas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="env">
+      <div class="revelar">
+        <div class="titulo" style="margin-bottom:0"><span class="n">03</span><div><small>Contacto</small><h2>Tráigalo<br>a revisión</h2></div></div>
+        <p class="intro">Cuéntenos qué tiene su carro y le respondemos por WhatsApp con un horario para recibirlo.</p>
+        <div class="renglon"><span>Teléfono</span><a href="tel:+524442440425">444 244 0425 (también WhatsApp)</a></div>
+        <!-- TODO: dirección y horario reales de la ficha de Google -->
+        <div class="renglon"><span>Dónde</span><span>San Luis Potosí, S.L.P.</span></div>
+        <div class="renglon"><span>Horario</span><span>Pregunte por WhatsApp</span></div>
+      </div>
+      <form id="cotizar" class="revelar">
+        <h3>Solicitud de cotización <span>Nº 0118</span></h3>
+        <div class="fila">
+          <label>Su nombre<input name="nombre" required autocomplete="name"></label>
+          <label>Vehículo<input name="auto" required placeholder="Marca, modelo y año"></label>
+        </div>
+        <label>Servicio
+          <select name="servicio" id="servicio">
+            <option value="afinación">Afinación</option><option value="frenos">Frenos</option><option value="suspensión">Suspensión</option><option value="diagnóstico">Diagnóstico</option><option value="cambio de aceite">Cambio de aceite</option><option value="clutch">Clutch</option><option value="otro">Otro / no sé qué tiene</option>
+          </select>
+        </label>
+        <label>¿Qué nota en su carro? (opcional)<textarea name="nota" rows="2"></textarea></label>
+        <button class="btn btn-wa" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="env">
+    <span>© <span id="anio"></span> Mecánica Automotriz Portales · San Luis Potosí</span>
+    <span>Propuesta de página por <a class="js-axioma">AXIOMA IA</a></span>
+  </div>
+</footer>
+
+<a class="flota js-wa" href="#contacto" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.2-4.6c-.4-.5-1-1.5-1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg></a>
+
+<script>
+  const WHATSAPP = '524442440425';
+  const AXIOMA = ''; // se llena al publicar
+  const wa = (texto) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+
+  document.querySelectorAll('.js-wa').forEach(a => { a.href = wa('Hola, quiero una cotización para mi carro.'); a.target = '_blank'; a.rel = 'noopener'; });
+  document.querySelectorAll('.js-axioma').forEach(a => { if (AXIOMA) { a.href = `https://wa.me/${AXIOMA}`; a.target = '_blank'; } });
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  // "Cotizar →" del tabulador preselecciona el servicio en el formulario
+  document.querySelectorAll('.js-cotiza').forEach(a => a.addEventListener('click', () => { document.getElementById('servicio').value = a.dataset.servicio; }));
+
+  document.getElementById('cotizar').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const texto = `Hola, soy ${f.get('nombre')}. Quiero cotizar ${f.get('servicio')} para mi ${f.get('auto')}.` + (f.get('nota') ? ` Lo que noto: ${f.get('nota')}` : '');
+    window.open(wa(texto), '_blank', 'noopener');
+  });
+
+  // Orden de servicio: se palomea renglón por renglón y al final cae el sello
+  const renglones = [...document.querySelectorAll('#checks li')];
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (quieto) { renglones.forEach(li => li.classList.add('hecho')); document.getElementById('sello').classList.add('puesto'); }
+  else {
+    renglones.forEach((li, i) => setTimeout(() => li.classList.add('hecho'), 900 + i * 420));
+    setTimeout(() => document.getElementById('sello').classList.add('puesto'), 900 + renglones.length * 420 + 250);
+  }
+
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); obs.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.revelar').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

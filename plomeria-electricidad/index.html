@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Técnico en plomería y electricidad · San Luis Potosí</title>
+<meta name="description" content="Plomería y electricidad a domicilio en San Luis Potosí. 4.7 estrellas y 95 reseñas en Google. Cotice por WhatsApp.">
+<!-- Propuesta de diseño: no indexar hasta que el negocio la apruebe -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Plomería y electricidad en San Luis Potosí · 4.7 estrellas">
+<meta property="og:description" content="Fugas, instalaciones, cortos y contactos. Un solo técnico para el agua y la luz de su casa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plano: #F6F8FA;
+    --blanco: #FFFFFF;
+    --reticula: rgba(31,74,140,.07);
+    --tinta: #0F1B2D;
+    --gris: #56637A;
+    --linea: #DDE3EB;
+    --agua: #1F6FEB;
+    --agua-claro: #D9E8FF;
+    --luz: #F5A800;
+    --luz-claro: #FFF1C7;
+    --wa: #1FA855;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--plano); color: var(--tinta); font: 400 17px/1.6 'Red Hat Display', system-ui, sans-serif; overflow-x: hidden;
+    background-image: linear-gradient(var(--reticula) 1px, transparent 1px), linear-gradient(90deg, var(--reticula) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .env { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  .mono { font-family: 'Red Hat Mono', monospace; }
+
+  .aviso-demo { background: var(--tinta); color: #C7D0DD; font-size: 13px; text-align: center; padding: 8px 16px; }
+  .aviso-demo b { color: #fff; font-weight: 700; }
+
+  header { background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); position: sticky; top: 0; z-index: 20; }
+  header .env { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo svg { width: 38px; height: 38px; }
+  .logo b { font: 900 18px/1.05 'Red Hat Display', sans-serif; display: block; }
+  .logo small { font: 400 12px 'Red Hat Mono', monospace; color: var(--gris); }
+  nav { display: flex; gap: 26px; font-weight: 500; font-size: 15px; }
+  nav a { text-decoration: none; color: var(--gris); }
+  nav a:hover { color: var(--agua); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; padding: 14px 22px; border-radius: 10px; transition: transform .2s, box-shadow .2s, background .2s; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-wa { background: var(--wa); color: #fff; box-shadow: 0 10px 22px -12px rgba(31,168,85,.9); }
+  .btn-wa:hover { transform: translateY(-2px); }
+  .btn-borde { border: 1.5px solid var(--tinta); }
+  .btn-borde:hover { background: var(--tinta); color: #fff; }
+  header .btn { padding: 10px 16px; font-size: 15px; }
+
+  /* HERO */
+  .hero { padding: 64px 0 40px; }
+  .hero .env { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .cota { font: 500 13px 'Red Hat Mono', monospace; color: var(--gris); display: flex; gap: 10px; align-items: center; }
+  .cota i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+  h1 { font: 900 clamp(44px, 5.8vw, 72px)/.98 'Red Hat Display', sans-serif; letter-spacing: -.025em; margin: 20px 0 22px; }
+  h1 .a { color: var(--agua); }
+  h1 .l { color: var(--tinta); background: linear-gradient(transparent 62%, var(--luz-claro) 62%, var(--luz-claro) 92%, transparent 92%); }
+  .bajada { font-size: 20px; color: var(--gris); max-width: 36ch; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .calif { display: flex; align-items: center; gap: 14px; margin-top: 30px; font-size: 15px; color: var(--gris); }
+  .calif b { font: 900 34px/1 'Red Hat Display', sans-serif; color: var(--tinta); }
+  .calif .e { color: var(--luz); letter-spacing: 2px; font-size: 18px; }
+
+  /* Esquema */
+  .esquema { position: relative; background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; padding: 18px; box-shadow: 0 30px 60px -36px rgba(15,27,45,.35); }
+  .esquema svg { width: 100%; height: auto; display: block; }
+  .esquema .trazo { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .esquema .casa { stroke: var(--tinta); stroke-width: 2.5; }
+  .esquema .tubo { stroke: var(--agua); stroke-width: 7; }
+  .esquema .cable { stroke: var(--luz); stroke-width: 4; }
+  .esquema .dibuja { stroke-dasharray: var(--l); stroke-dashoffset: var(--l); animation: dibujar 2.2s cubic-bezier(.6,.1,.3,1) forwards; }
+  .esquema .t2 { animation-delay: .6s; } .esquema .t3 { animation-delay: 1.2s; }
+  @keyframes dibujar { to { stroke-dashoffset: 0; } }
+  .gota { fill: var(--agua); opacity: 0; animation: gotear 1.6s ease-in 2.4s infinite; }
+  @keyframes gotear { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(26px); } }
+  .foco { fill: var(--luz-claro); stroke: var(--tinta); stroke-width: 2; }
+  .brillo { fill: var(--luz); opacity: 0; animation: prender .6s 2.6s forwards; }
+  @keyframes prender { 40% { opacity: .9; } 60% { opacity: .3; } to { opacity: 1; } }
+  .etq-esq { font: 500 11px 'Red Hat Mono', monospace; fill: var(--gris); }
+  .leyenda { display: flex; gap: 18px; margin-top: 10px; font: 500 12px 'Red Hat Mono', monospace; color: var(--gris); }
+  .leyenda span { display: flex; align-items: center; gap: 8px; }
+  .leyenda i { width: 22px; height: 5px; border-radius: 3px; }
+
+  section { padding: 90px 0; }
+  .titulo { margin-bottom: 44px; max-width: 760px; }
+  .titulo small { font: 500 13px 'Red Hat Mono', monospace; color: var(--agua); display: block; margin-bottom: 12px; }
+  h2 { font: 900 clamp(36px, 5vw, 58px)/1 'Red Hat Display', sans-serif; letter-spacing: -.02em; }
+  .titulo p { color: var(--gris); margin-top: 14px; font-size: 18px; }
+
+  /* Dos columnas: agua / luz */
+  .oficios { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .oficio { background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; }
+  .oficio::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
+  .oficio.agua::before { background: var(--agua); }
+  .oficio.luz::before { background: var(--luz); }
+  .oficio-cab { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .oficio-cab .ico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; }
+  .agua .ico { background: var(--agua-claro); color: var(--agua); }
+  .luz .ico { background: var(--luz-claro); color: #A86F00; }
+  .oficio-cab svg { width: 28px; height: 28px; }
+  .oficio h3 { font: 900 30px/1 'Red Hat Display', sans-serif; letter-spacing: -.01em; }
+  .oficio ul { list-style: none; }
+  .oficio li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-top: 1px dashed var(--linea); }
+  .oficio li span:last-child { font: 400 13px 'Red Hat Mono', monospace; color: var(--gris); white-space: nowrap; }
+
+  /* Fotos + pasos */
+  .franja-foto { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; }
+  .franja-foto figure { border-radius: 20px; overflow: hidden; position: relative; background: var(--tinta); }
+  .franja-foto img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16/10; }
+  .franja-foto figure:nth-child(2) img { aspect-ratio: auto; }
+  .franja-foto figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(255,255,255,.94); border-radius: 8px; padding: 6px 10px; font: 500 12px 'Red Hat Mono', monospace; }
+  .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 22px; }
+  .paso { background: var(--blanco); border: 1px solid var(--linea); border-radius: 20px; padding: 28px; }
+  .paso .n { font: 500 13px 'Red Hat Mono', monospace; color: var(--agua); }
+  .paso h3 { font: 900 22px/1.15 'Red Hat Display', sans-serif; margin: 10px 0 8px; }
+  .paso p { color: var(--gris); font-size: 15.5px; }
+
+  /* Reseña */
+  .resena { background: var(--tinta); color: #fff; border-radius: 28px; padding: 64px; display: grid; grid-template-columns: auto 1fr; gap: 60px; align-items: center; position: relative; overflow: hidden; }
+  .resena::after { content: ''; position: absolute; right: -60px; top: -60px; width: 260px; height: 260px; border-radius: 50%; border: 6px solid rgba(31,111,235,.35); box-shadow: 0 0 0 30px rgba(245,168,0,.08); }
+  .resena .num { font: 900 clamp(100px, 13vw, 160px)/.85 'Red Hat Display', sans-serif; letter-spacing: -.04em; }
+  .resena .num small { display: block; font: 500 13px 'Red Hat Mono', monospace; letter-spacing: 0; color: #AFBBCC; margin-top: 14px; }
+  .resena .num .e { display: block; font-size: 24px; color: var(--luz); letter-spacing: 3px; margin-top: 10px; }
+  .resena blockquote { font: 700 clamp(28px, 3.6vw, 44px)/1.15 'Red Hat Display', sans-serif; letter-spacing: -.015em; position: relative; z-index: 1; }
+  .resena cite { display: block; font: 400 13px 'Red Hat Mono', monospace; color: #AFBBCC; font-style: normal; margin-top: 18px; }
+
+  /* Contacto */
+  .contacto { display: grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items: start; }
+  .tipo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tipo input { position: absolute; opacity: 0; pointer-events: none; }
+  .tipo label { border: 1.5px solid var(--linea); border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 700; background: var(--blanco); transition: border-color .2s, background .2s; }
+  .tipo label i { width: 12px; height: 12px; border-radius: 50%; }
+  .tipo input:checked + label.a { border-color: var(--agua); background: var(--agua-claro); }
+  .tipo input:checked + label.l { border-color: var(--luz); background: var(--luz-claro); }
+  .tipo input:focus-visible + label { outline: 2px solid var(--agua); }
+  form { background: var(--blanco); border: 1px solid var(--linea); border-radius: 22px; padding: 28px; display: grid; gap: 16px; }
+  .campo { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+  .campo input, .campo textarea { font: inherit; font-weight: 400; font-size: 16px; border: 1.5px solid var(--linea); border-radius: 10px; padding: 12px 14px; color: var(--tinta); background: var(--plano); }
+  .campo input:focus, .campo textarea:focus { outline: none; border-color: var(--agua); background: #fff; }
+  .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  form .btn { justify-content: center; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+  .dato { display: flex; gap: 14px; padding: 16px 0; border-top: 1px dashed var(--linea); }
+  .dato:last-child { border-bottom: 1px dashed var(--linea); }
+  .dato span:first-child { font: 500 12px/1.9 'Red Hat Mono', monospace; color: var(--gris); width: 90px; flex: none; }
+
+  footer { border-top: 1px solid var(--linea); background: var(--blanco); padding: 26px 0; font-size: 14px; color: var(--gris); }
+  footer .env { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+  .flota { position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 12px 26px -8px rgba(31,168,85,.8); }
+  .flota svg { width: 30px; height: 30px; color: #fff; }
+
+  .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s, transform .7s; }
+  .revelar.visto { opacity: 1; transform: none; }
+  .entrada > * { opacity: 0; animation: subir .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .entrada > *:nth-child(2) { animation-delay: .1s; } .entrada > *:nth-child(3) { animation-delay: .2s; } .entrada > *:nth-child(4) { animation-delay: .3s; } .entrada > *:nth-child(5) { animation-delay: .4s; }
+  @keyframes subir { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .revelar, .entrada > * { opacity: 1; transform: none; }
+    .esquema .dibuja { stroke-dashoffset: 0; } .brillo { opacity: 1; }
+  }
+
+  @media (max-width: 920px) {
+    nav { display: none; }
+    .hero { padding: 40px 0 20px; }
+    .hero .env, .oficios, .contacto, .franja-foto { grid-template-columns: 1fr; }
+    .franja-foto figure:nth-child(2) { display: none; }
+    .pasos { grid-template-columns: 1fr; }
+    .resena { grid-template-columns: 1fr; padding: 40px 28px; gap: 26px; }
+    section { padding: 64px 0; }
+  }
+  @media (max-width: 560px) {
+    header .btn span { display: none; }
+    .logo small { display: none; }
+    .oficio { padding: 26px 22px; }
+    .oficio li { flex-direction: column; gap: 2px; }
+    .fila { grid-template-columns: 1fr; }
+    .bajada { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="aviso-demo"><b>Propuesta de diseño</b> preparada por AXIOMA IA para Técnico en plomería y electricidad · no es el sitio oficial</div>
+
+<header>
+  <div class="env">
+    <a class="logo" href="#inicio" aria-label="Técnico en plomería y electricidad">
+      <!-- TODO: nombre comercial y logo reales; este isotipo es una propuesta -->
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="#0F1B2D"/><path d="M12 27V17a5 5 0 0 1 10 0" fill="none" stroke="#1F6FEB" stroke-width="4" stroke-linecap="round"/><path d="M27 9l-4 9h5l-4 9" fill="none" stroke="#F5A800" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span><b>Plomería y Electricidad</b><small>Servicio técnico · SLP</small></span>
+    </a>
+    <nav><a href="#servicios">Servicios</a><a href="#como">Cómo trabajo</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a></nav>
+    <a class="btn btn-wa js-wa" href="#contacto"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.2-4.6c-.4-.5-1-1.5-1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg><span>WhatsApp</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="env">
+      <div class="entrada">
+        <div class="cota"><i style="background:var(--agua)"></i>Plomería <i style="background:var(--luz);margin-left:8px"></i>Electricidad · a domicilio en San Luis Potosí</div>
+        <h1>El <span class="a">agua</span> y la <span class="l">luz</span> de su casa, en buenas manos.</h1>
+        <p class="bajada">Fugas, instalaciones, cortos y contactos. Un solo técnico para las dos cosas: le explica qué pasa y le da el precio antes de empezar.</p>
+        <div class="acciones">
+          <a class="btn btn-wa js-wa" href="#contacto"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>Pedir cotización</a>
+          <a class="btn btn-borde" href="tel:+524441837540">Llamar 444 183 7540</a>
+        </div>
+        <div class="calif"><b>4.7</b><div><span class="e">★★★★★</span><br>95 reseñas en Google</div></div>
+      </div>
+
+      <div class="esquema entrada" aria-hidden="true">
+        <svg viewBox="0 0 460 360">
+          <!-- casa -->
+          <path class="trazo casa dibuja" style="--l:1200" d="M60 330V150L230 40l170 110v180Z"/>
+          <path class="trazo casa dibuja t2" style="--l:400" d="M60 330h340M200 330v-80h60v80"/>
+          <!-- tubería -->
+          <path class="trazo tubo dibuja t2" style="--l:620" d="M20 300h80v-70h70v-40h30"/>
+          <circle cx="100" cy="300" r="7" fill="#1F6FEB"/><circle cx="170" cy="230" r="7" fill="#1F6FEB"/>
+          <path class="trazo" d="M200 190h20v20" stroke="#0F1B2D" stroke-width="4" stroke-linecap="round"/>
+          <path class="gota" d="M220 218c-5 7-6 9-6 11a6 6 0 0 0 12 0c0-2-1-4-6-11Z"/>
+          <!-- cableado -->
+          <path class="trazo cable dibuja t3" style="--l:700" d="M440 300h-70v-130h-60v-30"/>
+          <circle cx="370" cy="300" r="5" fill="#F5A800"/><circle cx="370" cy="170" r="5" fill="#F5A800"/>
+          <circle class="brillo" cx="310" cy="116" r="28" style="filter:blur(10px)"/>
+          <path class="foco" d="M298 120a12 12 0 1 1 24 0c0 6-5 8-5 14h-14c0-6-5-8-5-14Z"/>
+          <rect x="303" y="134" width="14" height="6" rx="2" fill="#0F1B2D"/>
+          <text class="etq-esq" x="22" y="290">TOMA</text>
+          <text class="etq-esq" x="404" y="322">MEDIDOR</text>
+          <text class="etq-esq" x="232" y="234">FUGA</text>
+        </svg>
+        <div class="leyenda"><span><i style="background:var(--agua)"></i>Agua</span><span><i style="background:var(--luz)"></i>Luz</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="env">
+      <div class="titulo revelar"><small>// servicios</small><h2>Dos oficios, una sola llamada</h2><p>Lo más común que atendemos en casas y locales. Si su problema no está en la lista, pregunte.</p></div>
+      <!-- TODO: confirmar con el técnico la lista real de servicios -->
+      <div class="oficios">
+        <div class="oficio agua revelar">
+          <div class="oficio-cab"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11Z"/></svg></span><h3>Plomería</h3></div>
+          <ul>
+            <li><span>Detección y reparación de fugas</span><span>visible u oculta</span></li>
+            <li><span>Destape de drenaje, lavabo y WC</span><span>cocina y baño</span></li>
+            <li><span>Instalación de boiler y calentador</span><span>gas o solar</span></li>
+            <li><span>Tinacos, bombas y cisternas</span><span>presión y nivel</span></li>
+            <li><span>Llaves, mezcladoras y regaderas</span><span>cambio e instalación</span></li>
+          </ul>
+        </div>
+        <div class="oficio luz revelar">
+          <div class="oficio-cab"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg></span><h3>Electricidad</h3></div>
+          <ul>
+            <li><span>Cortos y apagones en una zona</span><span>diagnóstico</span></li>
+            <li><span>Contactos, apagadores y lámparas</span><span>instalación</span></li>
+            <li><span>Centro de carga y pastillas</span><span>cambio y ajuste</span></li>
+            <li><span>Cableado nuevo o remodelación</span><span>casa o local</span></li>
+            <li><span>Tierra física y protección</span><span>equipos sensibles</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como" style="padding-top:0">
+    <div class="env">
+      <div class="titulo revelar"><small>// cómo trabajo</small><h2>Claro y sin vueltas</h2></div>
+      <div class="franja-foto revelar">
+        <figure><img src="img/lavabo.jpg" alt="Técnico reparando la tubería de un lavabo" loading="lazy"><figcaption>Reparación de lavabo</figcaption></figure>
+        <figure><img src="img/herramientas.jpg" alt="Herramientas de trabajo sobre una mesa" loading="lazy"><figcaption>Herramienta propia</figcaption></figure>
+      </div>
+      <div class="pasos">
+        <div class="paso revelar"><span class="n">01 — Mensaje</span><h3>Cuénteme qué pasa</h3><p>Mándeme una foto o un video por WhatsApp. Muchas veces con eso ya le doy una idea del costo.</p></div>
+        <div class="paso revelar"><span class="n">02 — Visita</span><h3>Reviso y le doy precio</h3><p>Voy a su domicilio, encuentro la causa y le digo cuánto cuesta antes de empezar.</p></div>
+        <div class="paso revelar"><span class="n">03 — Trabajo</span><h3>Queda funcionando</h3><p>Probamos juntos que no gotee ni se bote la pastilla, y dejo limpio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resenas" style="padding-top:0">
+    <div class="env">
+      <div class="resena revelar">
+        <div class="num">4.7<span class="e">★★★★★</span><small>95 reseñas en Google</small></div>
+        <div><blockquote>“Recomiendo ampliamente el servicio de plomería.”</blockquote><cite>Reseña real de un cliente en Google Maps</cite></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" style="padding-top:0">
+    <div class="env contacto">
+      <div class="revelar">
+        <div class="titulo" style="margin-bottom:24px"><small>// contacto</small><h2>¿Qué necesita arreglar?</h2><p>Escríbame y le respondo por WhatsApp con el horario más cercano.</p></div>
+        <div class="dato"><span>TELÉFONO</span><a href="tel:+524441837540">444 183 7540 · también WhatsApp</a></div>
+        <!-- TODO: zona de servicio y horario reales -->
+        <div class="dato"><span>ZONA</span><span>San Luis Potosí y Soledad</span></div>
+        <div class="dato"><span>HORARIO</span><span>Pregunte por WhatsApp</span></div>
+      </div>
+      <form id="cotizar" class="revelar">
+        <div class="tipo" role="radiogroup" aria-label="Tipo de servicio">
+          <input type="radio" name="tipo" id="t-agua" value="plomería" checked><label class="a" for="t-agua"><i style="background:var(--agua)"></i>Plomería</label>
+          <input type="radio" name="tipo" id="t-luz" value="electricidad"><label class="l" for="t-luz"><i style="background:var(--luz)"></i>Electricidad</label>
+        </div>
+        <div class="fila">
+          <label class="campo">Su nombre<input name="nombre" required autocomplete="name"></label>
+          <label class="campo">Colonia<input name="colonia" required placeholder="Ej. Tequisquiapan"></label>
+        </div>
+        <label class="campo">¿Qué está pasando?<textarea name="problema" rows="3" required placeholder="Ej. gotea la llave del lavabo / se bota la pastilla al prender el micro"></textarea></label>
+        <button class="btn btn-wa" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="env">
+    <span>© <span id="anio"></span> Técnico en plomería y electricidad · San Luis Potosí</span>
+    <span>Propuesta de página por <a class="js-axioma">AXIOMA IA</a></span>
+  </div>
+</footer>
+
+<a class="flota js-wa" href="#contacto" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.6 13.4 13.4 0 0 1-5.2-4.6c-.4-.5-1-1.5-1-2.8 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.7-.1 1.4Z"/></svg></a>
+
+<script>
+  const WHATSAPP = '524441837540';
+  const AXIOMA = ''; // se llena al publicar
+  const wa = (texto) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+
+  document.querySelectorAll('.js-wa').forEach(a => { a.href = wa('Hola, necesito una cotización de plomería o electricidad.'); a.target = '_blank'; a.rel = 'noopener'; });
+  document.querySelectorAll('.js-axioma').forEach(a => { if (AXIOMA) { a.href = `https://wa.me/${AXIOMA}`; a.target = '_blank'; } });
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  document.getElementById('cotizar').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const texto = `Hola, soy ${f.get('nombre')}, de la colonia ${f.get('colonia')}. Necesito un servicio de ${f.get('tipo')}: ${f.get('problema')}`;
+    window.open(wa(texto), '_blank', 'noopener');
+  });
+
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visto'); obs.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.revelar').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

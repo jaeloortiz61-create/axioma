@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AXIOMA IA · San Luis Potosí</title>
+<meta name="description" content="Asistentes de WhatsApp con inteligencia artificial y páginas web para negocios de San Luis Potosí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --noche: #07152B; --tinta: #E9F1F8; --suave: #A9BBD0; --cian: #2EC5F0; --linea: rgba(169,187,208,.18); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh; display: grid; place-items: center; padding: 40px 20px;
+    background: radial-gradient(900px 500px at 85% -10%, rgba(46,197,240,.16), transparent 60%), var(--noche);
+    color: var(--tinta); font: 400 17px/1.6 'Instrument Sans', system-ui, sans-serif;
+  }
+  main { max-width: 640px; }
+  .marca { font-weight: 600; letter-spacing: .16em; font-size: 14px; }
+  .marca b { color: var(--cian); font-weight: 600; }
+  h1 { font: 700 clamp(38px, 7vw, 60px)/1.05 'Playfair Display', serif; margin: 26px 0 18px; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--cian); }
+  p { color: var(--suave); font-size: 19px; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; align-items: center; }
+  a.boton { text-decoration: none; background: var(--cian); color: var(--noche); font-weight: 600; padding: 14px 22px; border-radius: 12px; }
+  a.enlace { color: var(--tinta); text-underline-offset: 4px; }
+  footer { margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--linea); font-size: 14px; color: var(--suave); }
+</style>
+</head>
+<body>
+<main>
+  <div class="marca">AXIOMA <b>IA</b></div>
+  <h1>Su negocio contesta, agenda <em>y se encuentra.</em></h1>
+  <p>Asistentes de WhatsApp con inteligencia artificial y páginas web para negocios de San Luis Potosí.</p>
+  <div class="acciones">
+    <a class="boton" href="consultorios/">Ver el asistente de citas</a>
+    <a class="enlace" id="contacto" href="consultorios/">Escribirnos por WhatsApp</a>
+  </div>
+  <footer>San Luis Potosí, S.L.P.</footer>
+</main>
+<script>
+  const WHATSAPP_AXIOMA = ''; // 52 + 10 dígitos
+  if (WHATSAPP_AXIOMA) {
+    const a = document.getElementById('contacto');
+    a.href = `https://wa.me/${WHATSAPP_AXIOMA}?text=${encodeURIComponent('Hola, quiero información de AXIOMA IA.')}`;
+    a.target = '_blank'; a.rel = 'noopener';
+  }
+</script>
+</body>
+</html>

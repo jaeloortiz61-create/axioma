@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente de citas para consultorios · AXIOMA IA</title>
+<meta name="description" content="Un asistente de WhatsApp que contesta a sus pacientes a cualquier hora, agenda en su calendario y manda recordatorios. Hecho en San Luis Potosí.">
+<meta property="og:title" content="Su consultorio cierra. Su WhatsApp no.">
+<meta property="og:description" content="Vea en 1 minuto cómo un asistente de WhatsApp agenda citas solo, incluso de noche.">
+<meta property="og:type" content="website">
+<!-- TODO al publicar: og:url y og:image -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noche: #07152B;
+    --noche-2: #0C2140;
+    --tinta: #E9F1F8;
+    --tinta-suave: #A9BBD0;
+    --cian: #2EC5F0;
+    --cian-osc: #0E8FB8;
+    --linea: rgba(169, 187, 208, .18);
+    --burbuja-pac: #D8F3FC;
+    --burbuja-sofia: #FFFFFF;
+    --chat-fondo: #EEF3F7;
+    --texto-chat: #10233B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--noche);
+    color: var(--tinta);
+    font: 400 17px/1.6 'Instrument Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  body::before { /* cielo nocturno */
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(46,197,240,.16), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(14,143,184,.12), transparent 60%),
+      radial-gradient(1.2px 1.2px at 20% 18%, #fff8, transparent),
+      radial-gradient(1px 1px at 65% 8%, #fff6, transparent),
+      radial-gradient(1.4px 1.4px at 88% 40%, #fff5, transparent),
+      radial-gradient(1px 1px at 35% 62%, #fff4, transparent),
+      radial-gradient(1.2px 1.2px at 8% 85%, #fff5, transparent),
+      var(--noche);
+  }
+  a { color: inherit; }
+  .envoltura { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .marca { font-weight: 600; letter-spacing: .14em; font-size: 14px; }
+  .marca b { color: var(--cian); font-weight: 600; }
+  .etiqueta { font-size: 12px; color: var(--tinta-suave); border: 1px solid var(--linea); padding: 5px 12px; border-radius: 99px; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding: 40px 0 90px; }
+  .reloj { font: 500 italic clamp(18px, 2.2vw, 22px) 'Playfair Display', serif; color: var(--cian); display: flex; align-items: center; gap: 10px; }
+  .reloj::before { content: ''; width: 34px; height: 1px; background: var(--cian); }
+  h1 { font: 700 clamp(40px, 6vw, 72px)/1.04 'Playfair Display', serif; margin: 18px 0 22px; letter-spacing: -.01em; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--cian); }
+  .bajada { font-size: 19px; color: var(--tinta-suave); max-width: 33ch; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; align-items: center; }
+  .boton {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    background: var(--cian); color: var(--noche); font-weight: 600; padding: 15px 24px; border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(46,197,240,.6); transition: transform .2s, box-shadow .2s;
+  }
+  .boton:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px rgba(46,197,240,.75); }
+  .boton svg { width: 20px; height: 20px; }
+  .enlace { color: var(--tinta-suave); font-size: 15px; text-underline-offset: 4px; }
+
+  /* TELÉFONO */
+  .escena { position: relative; justify-self: center; width: min(360px, 100%); }
+  .telefono {
+    background: #050D1C; border-radius: 42px; padding: 12px;
+    box-shadow: 0 0 0 1px #1C3354, 0 40px 80px -30px rgba(0,0,0,.8), 0 0 120px -40px rgba(46,197,240,.5);
+  }
+  .pantalla { background: var(--chat-fondo); border-radius: 32px; overflow: hidden; height: 620px; display: flex; flex-direction: column; }
+  .barra { background: #fff; color: var(--texto-chat); padding: 16px 16px 12px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid #DCE5EC; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--cian), var(--cian-osc)); display: grid; place-items: center; color: #fff; font: 700 17px 'Playfair Display', serif; }
+  .barra strong { display: block; font-size: 15px; }
+  .barra small { color: #5C7189; font-size: 12px; }
+  .chat { flex: 1; overflow-y: auto; padding: 16px 12px 20px; display: flex; flex-direction: column; gap: 8px; scroll-behavior: smooth; }
+  .chat::-webkit-scrollbar { display: none; }
+  .msg {
+    max-width: 84%; padding: 9px 12px 7px; border-radius: 14px; font-size: 14.5px; line-height: 1.42; color: var(--texto-chat);
+    animation: entra .35s cubic-bezier(.2,.8,.3,1.2) both; box-shadow: 0 1px 1px rgba(16,35,59,.08);
+  }
+  .msg time { display: block; text-align: right; font-size: 10.5px; color: #6A7F95; margin-top: 2px; }
+  .pac { align-self: flex-end; background: var(--burbuja-pac); border-bottom-right-radius: 4px; }
+  .sofia { align-self: flex-start; background: var(--burbuja-sofia); border-bottom-left-radius: 4px; }
+  .msg b { font-weight: 600; }
+  .botones-plantilla { display: flex; gap: 6px; margin-top: 8px; }
+  .botones-plantilla span { flex: 1; text-align: center; font-size: 13px; color: var(--cian-osc); border-top: 1px solid #E3EAF0; padding-top: 7px; font-weight: 600; }
+  .nota {
+    align-self: center; font-size: 12px; color: #fff; background: var(--texto-chat); padding: 6px 12px; border-radius: 99px;
+    animation: entra .4s ease both; margin: 4px 0;
+  }
+  .escribiendo { align-self: flex-start; background: #fff; border-radius: 14px; padding: 12px 14px; display: flex; gap: 4px; }
+  .escribiendo i { width: 7px; height: 7px; border-radius: 50%; background: #9AAABB; animation: rebota 1s infinite; }
+  .escribiendo i:nth-child(2) { animation-delay: .15s; } .escribiendo i:nth-child(3) { animation-delay: .3s; }
+  @keyframes entra { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+  @keyframes rebota { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+  .escenas { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 18px; }
+  .escenas button {
+    font: 500 13px 'Instrument Sans', sans-serif; color: var(--tinta-suave); background: transparent;
+    border: 1px solid var(--linea); padding: 8px 13px; border-radius: 99px; cursor: pointer; transition: all .2s;
+  }
+  .escenas button[aria-pressed="true"] { color: var(--noche); background: var(--cian); border-color: var(--cian); }
+  .aviso-demo { text-align: center; font-size: 12px; color: var(--tinta-suave); margin-top: 10px; opacity: .8; }
+
+  /* SECCIONES */
+  section { padding: 80px 0; border-top: 1px solid var(--linea); }
+  .kicker { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--cian); font-weight: 600; }
+  h2 { font: 700 clamp(30px, 4vw, 46px)/1.1 'Playfair Display', serif; margin: 12px 0 18px; max-width: 20ch; }
+  h2 em { font-style: italic; font-weight: 500; color: var(--cian); }
+  .lista { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px; margin-top: 40px; counter-reset: n; }
+  .lista li { list-style: none; padding: 26px 0; border-top: 1px solid var(--linea); display: grid; grid-template-columns: 54px 1fr; counter-increment: n; }
+  .lista li::before { content: counter(n, decimal-leading-zero); font: 500 italic 26px 'Playfair Display', serif; color: var(--cian); }
+  .lista h3 { font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+  .lista p { color: var(--tinta-suave); font-size: 16px; }
+
+  .resumen { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+  .tarjeta-resumen {
+    background: #fff; color: var(--texto-chat); border-radius: 18px; padding: 20px 22px; font-size: 15px; line-height: 1.55;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,.7); transform: rotate(-1.2deg);
+  }
+  .tarjeta-resumen header { padding: 0 0 10px; border-bottom: 1px solid #E3EAF0; margin-bottom: 12px; font-size: 13px; color: #5C7189; }
+  .tarjeta-resumen ul { list-style: none; margin: 8px 0; }
+  .tarjeta-resumen li { padding: 3px 0; }
+  .tarjeta-resumen li b { display: inline-block; min-width: 84px; font-weight: 600; }
+
+  .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .paso { border: 1px solid var(--linea); border-radius: 18px; padding: 26px; background: linear-gradient(180deg, rgba(12,33,64,.7), rgba(12,33,64,.2)); }
+  .paso span { font: 500 italic 15px 'Playfair Display', serif; color: var(--cian); }
+  .paso h3 { font-size: 19px; margin: 8px 0 6px; }
+  .paso p { color: var(--tinta-suave); font-size: 15.5px; }
+  .garantia { margin-top: 28px; padding: 20px 24px; border-left: 3px solid var(--cian); background: rgba(46,197,240,.07); border-radius: 0 12px 12px 0; max-width: 680px; }
+
+  .video { display: none; }
+  .video.listo { display: block; }
+  .video video { width: min(360px, 100%); border-radius: 24px; display: block; margin: 30px auto 0; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
+
+  .cierre { text-align: center; padding: 100px 0; }
+  .cierre h2 { margin: 12px auto 18px; }
+  .cierre p { color: var(--tinta-suave); max-width: 46ch; margin: 0 auto 30px; }
+  footer { border-top: 1px solid var(--linea); padding: 28px 0 40px; font-size: 13px; color: var(--tinta-suave); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  .revelar { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .revelar.visible { opacity: 1; transform: none; }
+  .hero .anim { animation: entra .8s ease both; }
+  .hero .anim:nth-child(2) { animation-delay: .1s; } .hero .anim:nth-child(3) { animation-delay: .2s; } .hero .anim:nth-child(4) { animation-delay: .3s; }
+
+  @media (max-width: 880px) {
+    .hero, .resumen { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding-top: 16px; }
+    .lista, .pasos { grid-template-columns: 1fr; }
+    .pantalla { height: 560px; }
+    .tarjeta-resumen { transform: none; }
+  }
+  @media (max-width: 420px) {
+    body { font-size: 16px; }
+    .etiqueta { display: none; }
+    .bajada { font-size: 17px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .revelar { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <header>
+    <div class="marca">AXIOMA <b>IA</b></div>
+    <div class="etiqueta">Asistentes de WhatsApp · San Luis Potosí</div>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="reloj anim" id="reloj">Son las 11:42 p. m.</p>
+      <h1 class="anim">Su consultorio cierra.<br><em>Su WhatsApp no.</em></h1>
+      <p class="bajada anim">Un asistente que contesta a sus pacientes a cualquier hora, revisa su agenda real, aparta la cita en su calendario y les recuerda que vengan.</p>
+      <div class="acciones anim">
+        <a class="boton" data-whatsapp href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Quiero verlo con mis horarios
+        </a>
+        <a class="enlace" href="#que-hace">¿Qué hace exactamente?</a>
+      </div>
+    </div>
+
+    <div class="escena">
+      <div class="telefono" role="img" aria-label="Conversación de ejemplo entre un paciente y el asistente del consultorio">
+        <div class="pantalla">
+          <div class="barra">
+            <div class="avatar">S</div>
+            <div><strong>Dental Care</strong><small id="estado">Sofía · asistente del consultorio</small></div>
+          </div>
+          <div class="chat" id="chat" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="escenas" role="group" aria-label="Elegir ejemplo">
+        <button data-escena="noche" aria-pressed="true">Agenda de noche</button>
+        <button data-escena="regreso" aria-pressed="false">Paciente de regreso</button>
+        <button data-escena="urgencia" aria-pressed="false">Urgencia</button>
+        <button data-escena="recordatorio" aria-pressed="false">Recordatorio</button>
+      </div>
+      <p class="aviso-demo">Conversaciones reales del asistente, con datos de ejemplo.</p>
+    </div>
+  </div>
+</div>
+
+<section id="que-hace">
+  <div class="envoltura">
+    <p class="kicker revelar">Qué hace</p>
+    <h2 class="revelar">Trabaja como su mejor recepcionista, <em>a cualquier hora.</em></h2>
+    <ol class="lista">
+      <li class="revelar"><div><h3>Agenda solo, de día o de noche</h3><p>Pregunta el motivo, ofrece solo horarios que de verdad están libres y aparta la cita en su Google Calendar.</p></div></li>
+      <li class="revelar"><div><h3>Ofrece la hora más cercana</h3><p>Si piden “el jueves a las 5” y ya está ocupado, propone las opciones más próximas. Nunca encima citas.</p></div></li>
+      <li class="revelar"><div><h3>Recuerda la cita</h3><p>Un día antes manda el recordatorio. El paciente confirma, cambia o cancela ahí mismo, y su agenda se actualiza.</p></div></li>
+      <li class="revelar"><div><h3>Le avisa cuando hace falta usted</h3><p>En urgencias o cuando el paciente pide hablar con una persona, le llega el aviso a su WhatsApp al momento.</p></div></li>
+      <li class="revelar"><div><h3>Reconoce a sus pacientes</h3><p>Distingue a quien viene por primera vez de quien ya se atendió, y lo anota en la cita para que usted lo vea.</p></div></li>
+      <li class="revelar"><div><h3>No inventa ni diagnostica</h3><p>Contesta precios, horarios y ubicación con la información que usted le da. Lo que no sabe, se lo pregunta a usted.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura resumen">
+    <div>
+      <p class="kicker revelar">Usted ve todo</p>
+      <h2 class="revelar">Cada mañana, <em>su día en un mensaje.</em></h2>
+      <p class="revelar" style="color:var(--tinta-suave);max-width:40ch">Sin abrir apps ni capturar nada: las citas quedan en su calendario y el resumen le llega a su WhatsApp antes de empezar.</p>
+    </div>
+    <div class="tarjeta-resumen revelar" aria-label="Ejemplo de resumen diario">
+      <header>Resumen del día · 7:30 a. m.</header>
+      Buenos días, doctora. Hoy tiene <b>5 citas</b>:
+      <ul>
+        <li><b>9:00 a. m.</b> Jorge Ramírez · valoración (de regreso)</li>
+        <li><b>10:30 a. m.</b> Ana Torres · limpieza</li>
+        <li><b>12:00 p. m.</b> Luis Herrera · resina</li>
+        <li><b>4:30 p. m.</b> Mariana Díaz · ortodoncia</li>
+        <li><b>5:30 p. m.</b> Laura Méndez · limpieza (primera vez)</li>
+      </ul>
+      Las 5 confirmaron su asistencia. 🦷
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <p class="kicker revelar">Cómo empezamos</p>
+    <h2 class="revelar">En una semana lo tiene <em>funcionando.</em></h2>
+    <div class="pasos">
+      <div class="paso revelar"><span>Paso 1</span><h3>Nos cuenta cómo trabaja</h3><p>Horarios, tratamientos, duración de cada uno y precios que quiere compartir. Una plática de 20 minutos.</p></div>
+      <div class="paso revelar"><span>Paso 2</span><h3>Lo configuramos</h3><p>Lo conectamos a su WhatsApp y a su calendario, y lo probamos con usted antes de encenderlo.</p></div>
+      <div class="paso revelar"><span>Paso 3</span><h3>Empieza a agendar</h3><p>Funciona en la nube, sin instalar nada. Nosotros nos encargamos del mantenimiento cada mes.</p></div>
+    </div>
+    <p class="garantia revelar"><strong>Pruébelo sin riesgo:</strong> el primer mes de mensualidad corre por nuestra cuenta. Si no le ahorra trabajo, no la paga.</p>
+    <div class="video" id="video">
+      <video src="video/demo.mp4" controls playsinline preload="metadata" aria-label="Video del asistente funcionando en un celular"></video>
+    </div>
+  </div>
+</section>
+
+<section class="cierre">
+  <div class="envoltura">
+    <p class="kicker revelar">¿Lo vemos con su consultorio?</p>
+    <h2 class="revelar">Que ningún paciente se quede <em>sin respuesta.</em></h2>
+    <p class="revelar">Escríbanos y le mostramos el asistente funcionando con los horarios y tratamientos de su consultorio, en 10 minutos.</p>
+    <a class="boton revelar" data-whatsapp href="#">Escribir a AXIOMA IA</a>
+  </div>
+</section>
+
+<div class="envoltura">
+  <footer>
+    <span>AXIOMA IA · Automatización con inteligencia artificial · San Luis Potosí</span>
+    <span>“Dental Care”, sus pacientes y sus citas son un ejemplo.</span>
+  </footer>
+</div>
+
+<script>
+  // TODO: número de WhatsApp de AXIOMA IA (52 + 10 dígitos, sin espacios).
+  const WHATSAPP_AXIOMA = '';
+  const MENSAJE = 'Hola, vi la demostración del asistente para consultorios y me gustaría verlo con mis horarios.';
+  document.querySelectorAll('[data-whatsapp]').forEach(a => {
+    if (WHATSAPP_AXIOMA) a.href = `https://wa.me/${WHATSAPP_AXIOMA}?text=${encodeURIComponent(MENSAJE)}`;
+    else a.href = '#que-hace';
+  });
+
+  // Reloj de la escena: la hora real si es de noche, si no "11:42 p. m." (la usa también el chat de noche)
+  const HORA_NOCHE = (() => {
+    const h = new Date();
+    if (!(h.getHours() >= 21 || h.getHours() < 7)) return '11:42 p. m.';
+    const hora = h.getHours() % 12 || 12, min = String(h.getMinutes()).padStart(2, '0');
+    return `${hora}:${min} ${h.getHours() < 12 ? 'a. m.' : 'p. m.'}`;
+  })();
+  document.getElementById('reloj').textContent = `Son las ${HORA_NOCHE}`;
+
+  // Fechas de los ejemplos: siempre el próximo jueves / lunes, dichos como en México.
+  const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  function proximo(dia) {
+    const d = new Date(); d.setDate(d.getDate() + 1);
+    while (d.getDay() !== dia) d.setDate(d.getDate() + 1);
+    return `${DIAS[dia]} ${d.getDate()} de ${MESES[d.getMonth()]}`;
+  }
+  const JUE = proximo(4), LUN = proximo(1);
+
+  // p = paciente, s = Sofía, n = nota del sistema, t = plantilla con botones
+  const ESCENAS = {
+    noche: { hora: HORA_NOCHE, mensajes: [
+      ['p', 'Hola, buenas noches. ¿Tendrán lugar para una limpieza esta semana?'],
+      ['s', '¡Hola! Soy Sofía, la asistente de Dental Care 😊 Con gusto le ayudo. ¿Qué días u horario le acomodan?'],
+      ['p', 'El jueves en la tarde, como a las 5'],
+      ['s', `El ${JUE} a las 5:00 p. m. ya no tengo lugar, pero tengo a las 4:30 p. m. o a las 5:30 p. m. ¿Cuál le acomoda?`],
+      ['p', '5:30 está bien'],
+      ['s', 'Perfecto. ¿Ya nos ha visitado antes o sería su primera vez con nosotros?'],
+      ['p', 'Primera vez'],
+      ['s', '¿La cita sería a nombre de Laura Méndez?'],
+      ['p', 'Sí'],
+      ['s', `Entonces queda así: limpieza dental el ${JUE} a las 5:30 p. m., a nombre de Laura Méndez. ¿Se la confirmo?`],
+      ['p', 'Sí, por favor'],
+      ['s', `¡Listo, Laura! 🦷 Su limpieza quedó agendada para el *${JUE} a las 5:30 p. m.* Un día antes le llegará un recordatorio. ¡Le esperamos!`],
+      ['n', '📅 Cita agregada al calendario del consultorio'],
+    ]},
+    regreso: { hora: '4:15 p. m.', mensajes: [
+      ['p', 'Buenas tardes, quiero una cita para revisión. Ya me había atendido con ustedes'],
+      ['s', '¡Claro que sí! ¿Me comparte su nombre completo con apellidos para buscarle?'],
+      ['p', 'Jorge Ramírez Ortega'],
+      ['s', '¡Qué gusto tenerle de vuelta, Jorge! ¿Qué días le acomodan para su valoración?'],
+      ['p', 'El lunes temprano'],
+      ['s', `El ${LUN} tengo a las 9:00 a. m., a las 9:45 a. m. o a las 10:30 a. m. ¿Cuál prefiere?`],
+      ['p', 'A las 9'],
+      ['s', `Listo, Jorge 🦷 Su valoración quedó el *${LUN} a las 9:00 a. m.* ¡Le esperamos!`],
+      ['n', '📝 Anotado en la cita: paciente de regreso'],
+    ]},
+    urgencia: { hora: '10:05 p. m.', mensajes: [
+      ['p', 'Me duele muchísimo una muela y se me está hinchando la cara'],
+      ['n', '🔔 Aviso enviado al WhatsApp de la doctora'],
+      ['s', 'Lamento mucho que tenga esa molestia. Ya le avisé a la doctora con lo que me cuenta y se comunicará con usted a la brevedad.'],
+      ['s', 'Si la inflamación llega al cuello o al ojo, o le cuesta tragar o respirar, acuda de inmediato a un servicio de urgencias.'],
+      ['p', 'Gracias, quedo pendiente'],
+    ]},
+    recordatorio: { hora: '10:00 a. m.', mensajes: [
+      ['t', `Hola, Laura. Le recordamos su cita de *limpieza dental* mañana, ${JUE}, a las *5:30 p. m.* en Dental Care.`],
+      ['p', 'Confirmo'],
+      ['s', '¡Gracias, Laura! Le esperamos mañana a las 5:30 p. m. 😊'],
+      ['n', '✅ Asistencia confirmada en la agenda'],
+    ]},
+  };
+
+  const chat = document.getElementById('chat');
+  const estado = document.getElementById('estado');
+  let turno = 0;
+  const espera = ms => new Promise(r => setTimeout(r, ms));
+  const formato = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])).replace(/\*(.+?)\*/g, '<b>$1</b>');
+
+  async function reproducir(nombre) {
+    const mio = ++turno;
+    const { hora, mensajes } = ESCENAS[nombre];
+    chat.innerHTML = '';
+    for (const [quien, texto] of mensajes) {
+      if (mio !== turno) return;
+      if (quien === 's' || quien === 't') {
+        estado.textContent = 'escribiendo…';
+        const e = document.createElement('div');
+        e.className = 'escribiendo'; e.innerHTML = '<i></i><i></i><i></i>';
+        chat.appendChild(e); chat.scrollTop = chat.scrollHeight;
+        await espera(Math.min(2200, 700 + texto.length * 14));
+        e.remove();
+        if (mio !== turno) return;
+        estado.textContent = 'Sofía · asistente del consultorio';
+      } else {
+        await espera(quien === 'n' ? 500 : 1100);
+        if (mio !== turno) return;
+      }
+      const m = document.createElement('div');
+      if (quien === 'n') { m.className = 'nota'; m.textContent = texto; }
+      else {
+        m.className = 'msg ' + (quien === 'p' ? 'pac' : 'sofia');
+        m.innerHTML = formato(texto) + (quien === 't' ? '<div class="botones-plantilla"><span>Confirmo</span><span>Reagendar</span></div>' : '') + `<time>${hora}</time>`;
+      }
+      chat.appendChild(m); chat.scrollTop = chat.scrollHeight;
+    }
+    await espera(6000);
+    if (mio !== turno) return;
+    const orden = Object.keys(ESCENAS);
+    elegir(orden[(orden.indexOf(nombre) + 1) % orden.length]);
+  }
+
+  function elegir(nombre) {
+    document.querySelectorAll('[data-escena]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.escena === nombre)));
+    reproducir(nombre);
+  }
+  document.querySelectorAll('[data-escena]').forEach(b => b.addEventListener('click', () => elegir(b.dataset.escena)));
+  elegir('noche');
+
+  // Aparición al hacer scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.revelar').forEach(el => io.observe(el));
+
+  // El video solo aparece cuando exista video/demo.mp4
+  const v = document.querySelector('#video video');
+  v.addEventListener('loadedmetadata', () => document.getElementById('video').classList.add('listo'));
+</script>
+</body>
+</html>
